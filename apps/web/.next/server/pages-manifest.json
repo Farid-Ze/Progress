@@ -1,1 +1,1 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/campaign/[slug]":"pages/campaign/[slug].html","/":"pages/index.html","/404":"pages/404.html"}
+{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/campaign/[slug]":"pages/campaign/[slug].html","/campaign/enhanced-details":"pages/campaign/enhanced-details.html","/":"pages/index.html","/404":"pages/404.html"}

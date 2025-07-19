@@ -5,40 +5,40 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/PK8fT3jnO_YG3KB364OKd/_buildManifest.js",
-    "static/PK8fT3jnO_YG3KB364OKd/_ssgManifest.js"
+    "static/LTE-3TJXMkVi5BKtva-dk/_buildManifest.js",
+    "static/LTE-3TJXMkVi5BKtva-dk/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
     "/": [
       "static/chunks/webpack-5f93e287a529fdfa.js",
-      "static/chunks/framework-8a8ee0a30377ce1f.js",
-      "static/chunks/main-e7dd4fa71e3f71a3.js",
-      "static/chunks/236-c3a986bee8944ec2.js",
-      "static/chunks/767-90ad383542dba3bf.js",
-      "static/chunks/206-db125bd4c10b6749.js",
-      "static/chunks/pages/index-98c60c7db7b93780.js"
+      "static/chunks/vendors-c77b2ea7927d068f.js",
+      "static/chunks/main-40b0d36b34d222af.js",
+      "static/chunks/pages/index-31e9c7414a033f4b.js"
     ],
     "/_app": [
       "static/chunks/webpack-5f93e287a529fdfa.js",
-      "static/chunks/framework-8a8ee0a30377ce1f.js",
-      "static/chunks/main-e7dd4fa71e3f71a3.js",
-      "static/chunks/pages/_app-b296c9797e276981.js"
+      "static/chunks/vendors-c77b2ea7927d068f.js",
+      "static/chunks/main-40b0d36b34d222af.js",
+      "static/chunks/pages/_app-a8491a5b5df9c0f5.js"
     ],
     "/_error": [
       "static/chunks/webpack-5f93e287a529fdfa.js",
-      "static/chunks/framework-8a8ee0a30377ce1f.js",
-      "static/chunks/main-e7dd4fa71e3f71a3.js",
-      "static/chunks/pages/_error-1ac136249be010d2.js"
+      "static/chunks/vendors-c77b2ea7927d068f.js",
+      "static/chunks/main-40b0d36b34d222af.js",
+      "static/chunks/pages/_error-54e1341043e7369e.js"
     ],
     "/campaign/[slug]": [
       "static/chunks/webpack-5f93e287a529fdfa.js",
-      "static/chunks/framework-8a8ee0a30377ce1f.js",
-      "static/chunks/main-e7dd4fa71e3f71a3.js",
-      "static/chunks/236-c3a986bee8944ec2.js",
-      "static/chunks/576-9fc55c1ca8a470fb.js",
-      "static/chunks/206-db125bd4c10b6749.js",
-      "static/chunks/pages/campaign/[slug]-5968e65eddc81489.js"
+      "static/chunks/vendors-c77b2ea7927d068f.js",
+      "static/chunks/main-40b0d36b34d222af.js",
+      "static/chunks/pages/campaign/[slug]-9859cc71326e5c7a.js"
+    ],
+    "/campaign/enhanced-details": [
+      "static/chunks/webpack-5f93e287a529fdfa.js",
+      "static/chunks/vendors-c77b2ea7927d068f.js",
+      "static/chunks/main-40b0d36b34d222af.js",
+      "static/chunks/pages/campaign/enhanced-details-cfb0fc16ee7759ef.js"
     ]
   },
   "ampFirstPages": []

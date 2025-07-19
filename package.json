@@ -4,13 +4,32 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "apps/*"
+    "apps/*",
+    "apps/services/*"
   ],
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "start": "turbo run start",
     "test": "turbo run test",
-    "lint": "turbo run lint"
+    "test:watch": "turbo run test:watch",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean",
+    "docker:up": "docker-compose -f infrastructure/docker/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f infrastructure/docker/docker-compose.yml down",
+    "docker:logs": "docker-compose -f infrastructure/docker/docker-compose.yml logs -f",
+    "docker:build": "docker-compose -f infrastructure/docker/docker-compose.yml build",
+    "db:migrate": "npm run db:migrate:postgres && npm run db:migrate:mongodb",
+    "db:migrate:postgres": "cd infrastructure/database/postgresql && psql -h localhost -U postgres -d merajut_asa -f init.sql",
+    "db:migrate:mongodb": "cd infrastructure/database/mongodb && mongosh merajut_asa init.js",
+    "db:seed": "npm run db:seed:postgres && npm run db:seed:mongodb",
+    "performance:check": "npm run build && lighthouse --chrome-flags='--headless' --output=json --output-path=./performance-report.json http://localhost:3000",
+    "performance:budget": "cd packages/performance && npm run check",
+    "security:audit": "npm audit --audit-level=high",
+    "security:fix": "npm audit fix",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "turbo": "^1.13.4"

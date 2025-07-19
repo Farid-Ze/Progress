@@ -1,12 +1,6 @@
 import type { AppProps } from 'next/app';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-
-const theme = extendTheme({
-  config: {
-    initialColorMode: 'light',
-    useSystemColorMode: false,
-  },
-});
+import { ChakraProvider } from '@chakra-ui/react';
+import { theme } from '@merajut-asa/ui';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

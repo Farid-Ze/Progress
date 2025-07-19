@@ -1,0 +1,250 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database for transactional data
+  postgres:
+    image: postgres:15-alpine
+    container_name: merajut-asa-postgres
+    environment:
+      POSTGRES_DB: merajut_asa
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - merajut-network
+
+  # MongoDB for flexible content storage
+  mongodb:
+    image: mongo:6
+    container_name: merajut-asa-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: merajut_asa
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - merajut-network
+
+  # Redis for caching and session management
+  redis:
+    image: redis:7-alpine
+    container_name: merajut-asa-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - merajut-network
+
+  # Elasticsearch for search functionality
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
+    container_name: merajut-asa-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - merajut-network
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ../../apps/api-gateway
+      dockerfile: Dockerfile
+    container_name: merajut-asa-api-gateway
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/merajut_asa?authSource=admin
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - merajut-network
+
+  # Auth Service
+  auth-service:
+    build:
+      context: ../../apps/services/auth-service
+      dockerfile: Dockerfile
+    container_name: merajut-asa-auth-service
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/merajut_asa?authSource=admin
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - merajut-network
+
+  # Campaign Service
+  campaign-service:
+    build:
+      context: ../../apps/services/campaign-service
+      dockerfile: Dockerfile
+    container_name: merajut-asa-campaign-service
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/merajut_asa?authSource=admin
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - merajut-network
+
+  # Payment Service
+  payment-service:
+    build:
+      context: ../../apps/services/payment-service
+      dockerfile: Dockerfile
+    container_name: merajut-asa-payment-service
+    ports:
+      - "3003:3003"
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/merajut_asa?authSource=admin
+      - REDIS_URL=redis://redis:6379
+      - STRIPE_SECRET_KEY=your-stripe-secret-key
+      - STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - merajut-network
+
+  # User Service
+  user-service:
+    build:
+      context: ../../apps/services/user-service
+      dockerfile: Dockerfile
+    container_name: merajut-asa-user-service
+    ports:
+      - "3004:3004"
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/merajut_asa?authSource=admin
+      - REDIS_URL=redis://redis:6379
+      - UPLOAD_PATH=/uploads
+      - MAX_FILE_SIZE=5242880
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - merajut-network
+
+  # Community Service
+  community-service:
+    build:
+      context: ../../apps/services/community-service
+      dockerfile: Dockerfile
+    container_name: merajut-asa-community-service
+    ports:
+      - "3005:3005"
+    environment:
+      - NODE_ENV=development
+      - POSTGRES_HOST=postgres
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/merajut_asa?authSource=admin
+      - REDIS_URL=redis://redis:6379
+      - UPLOAD_PATH=/uploads
+      - MAX_FILE_SIZE=10485760
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - merajut-network
+
+  # Frontend Web Application
+  web-app:
+    build:
+      context: ../../apps/web
+      dockerfile: Dockerfile
+    container_name: merajut-asa-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://api-gateway:4000/graphql
+    depends_on:
+      - api-gateway
+    networks:
+      - merajut-network
+
+volumes:
+  postgres_data:
+  mongodb_data:
+  redis_data:
+  elasticsearch_data:
+
+networks:
+  merajut-network:
+    driver: bridge

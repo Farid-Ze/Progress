@@ -1,0 +1,17 @@
+
+> @merajut-asa/performance@0.1.0 test
+> jest
+
+[1m[2mDetermining test suites to run...[22m[22m[999D[K[1mNo tests found, exiting with code 1[22m
+Run with `--passWithNoTests` to exit with code 0
+In [1m/workspaces/Progress/packages/performance[22m
+  5 files checked.
+  testMatch: [33m**/__tests__/**/*.[jt]s?(x), **/?(*.)+(spec|test).[tj]s?(x)[39m - 0 matches
+  testPathIgnorePatterns: [33m/node_modules/[39m - 5 matches
+  testRegex:  - 0 matches
+Pattern:  - 0 matches
+[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mLifecycle script `test` failed with error:[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mError: command failed[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  in workspace: @merajut-asa/performance@0.1.0[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  at location: /workspaces/Progress/packages/performance[0m 
+[0m
