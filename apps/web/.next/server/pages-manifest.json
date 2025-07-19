@@ -1,1 +1,7 @@
-{"/_app":"pages/_app.js","/_document":"pages/_document.js","/akademi":"pages/akademi.html","/campaign/[slug]":"pages/campaign/[slug].html","/campaign/enhanced-details":"pages/campaign/enhanced-details.html","/impact":"pages/impact.html","/":"pages/index.html","/katalisator":"pages/katalisator.html","/mentorship":"pages/mentorship.html","/suara-komunitas":"pages/suara-komunitas.html","/_error":"pages/_error.js","/404":"pages/404.html"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/campaign/[slug]": "pages/campaign/[slug].js"
+}
