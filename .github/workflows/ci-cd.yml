@@ -1,10 +1,5 @@
 name: CI/CD Pipeline
 
-# Optional integrations (currently disabled, uncomment and add secrets to enable):
-# - SNYK_TOKEN: For Snyk security scanning
-# - SLACK_WEBHOOK: For deployment notifications  
-# - LHCI_GITHUB_APP_TOKEN: For Lighthouse CI performance monitoring
-
 on:
   push:
     branches: [ main, develop ]
@@ -84,15 +79,6 @@ jobs:
         
       - name: Run security audit
         run: npm audit --audit-level=high
-        
-      # Note: Snyk security scanning disabled - add SNYK_TOKEN secret to enable
-      # - name: Run Snyk to check for vulnerabilities
-      #   continue-on-error: true
-      #   uses: snyk/actions/node@master
-      #   env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      #   with:
-      #     args: --severity-threshold=high
           
       - name: Run CodeQL Analysis
         uses: github/codeql-action/analyze@v2
@@ -198,16 +184,6 @@ jobs:
         run: |
           echo "Running health checks..."
           # Add your health check commands here
-          
-      # Note: Slack notifications disabled - add SLACK_WEBHOOK secret to enable
-      # - name: Notify deployment
-      #   continue-on-error: true
-      #   uses: 8398a7/action-slack@v3
-      #   with:
-      #     status: ${{ job.status }}
-      #     channel: '#deployments'
-      #     webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-      #   if: always()
 
   # Performance monitoring
   lighthouse:
@@ -220,16 +196,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      # Note: Lighthouse CI disabled - add LHCI_GITHUB_APP_TOKEN secret to enable
-      # - name: Run Lighthouse CI
-      #   continue-on-error: true
-      #   uses: treosh/lighthouse-ci-action@v10
-      #   with:
-      #     configPath: ./lighthouserc.js
-      #     uploadArtifacts: true
-      #     temporaryPublicStorage: true
-      #   env:
-      #     LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+      - name: Run basic performance check
+        run: |
+          echo "Running basic performance checks..."
+          # Add your performance check commands here
 
   # Dependency updates
   dependabot:
