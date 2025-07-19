@@ -33,8 +33,9 @@ const FiMapPin = () => <span>📍</span>;
 const FiUsers = () => <span>👥</span>;
 const FiTrendingUp = () => <span>📈</span>;
 const FiAward = () => <span>🏆</span>;
-import Head from 'next/head';
 import { Navigation } from '@merajut-asa/ui';
+import Head from 'next/head';
+
 import { Footer } from '../../components/layout/Footer';
 
 // Mock data untuk dashboard regional

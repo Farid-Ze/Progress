@@ -297,7 +297,7 @@ export const createFeedback = async (req: Request, res: Response) => {
   try {
     const {
       title,
-      description,
+      _description,
       category,
       priority = 'medium',
       tags = [],
@@ -312,14 +312,14 @@ export const createFeedback = async (req: Request, res: Response) => {
     if (!title || !description || !category) {
       return res.status(400).json({
         success: false,
-        message: 'Title, description, and category are required'
+        message: 'Title, _description, and category are required'
       });
     }
     
     const newFeedback: FeedbackItem = {
       id: Date.now().toString(),
       title,
-      description,
+      _description,
       category,
       priority,
       status: 'submitted',

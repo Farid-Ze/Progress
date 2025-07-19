@@ -11,11 +11,11 @@ import {
   CardBody,
   Badge,
   Icon,
-  Flex,
+  // Flex, - Removed unused import
   SimpleGrid,
   Progress,
   Avatar,
-  AvatarGroup,
+  // AvatarGroup, - Removed unused import
   useColorModeValue,
   Tabs,
   TabList,
@@ -23,24 +23,25 @@ import {
   Tab,
   TabPanel,
   Image,
-  List,
-  ListItem,
-  ListIcon,
+  // List, - Removed unused imports
+  // ListItem,
+  // ListIcon,
 } from '@chakra-ui/react';
 // Simple icon placeholders from react-icons/fi
 const FiPlay = () => <span>▶️</span>;
 const FiBook = () => <span>📚</span>;
-const FiUsers = () => <span>👥</span>;
+// const FiUsers = () => <span>👥</span>; - Removed unused
 const FiAward = () => <span>🏆</span>;
-const FiClock = () => <span>⏰</span>;
+// const FiClock = () => <span>⏰</span>; - Removed unused
 const FiCheckCircle = () => <span>✅</span>;
-const FiStar = () => <span>⭐</span>;
-const FiTrendingUp = () => <span>📈</span>;
+// const FiStar = () => <span>⭐</span>; - Removed unused
+// const FiTrendingUp = () => <span>📈</span>; - Removed unused
 const FiVideo = () => <span>📹</span>;
 const FiFileText = () => <span>📄</span>;
 const FiDownload = () => <span>⬇️</span>;
-import Head from 'next/head';
 import { Navigation } from '@merajut-asa/ui';
+import Head from 'next/head';
+
 import { Footer } from '../../components/layout/Footer';
 
 interface LearningTrack {
@@ -186,7 +187,7 @@ const sampleModules: Module[] = [
 
 const AkademiPenggerakDigital: React.FC = () => {
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  // Removed unused selectedCategory state
   
   const cardBg = useColorModeValue('white', 'gray.800');
   const borderColor = useColorModeValue('gray.200', 'gray.700');

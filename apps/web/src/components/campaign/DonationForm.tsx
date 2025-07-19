@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -16,6 +15,7 @@ import {
   Text,
   Divider,
 } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
 // Donation amount presets
 const DONATION_PRESETS = [

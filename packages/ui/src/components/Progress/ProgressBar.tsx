@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Progress as ChakraProgress,
@@ -9,6 +8,7 @@ import {
   useStyleConfig,
   forwardRef,
 } from '@chakra-ui/react';
+import React from 'react';
 
 export interface ProgressBarProps extends Omit<ChakraProgressProps, 'value' | 'max'> {
   /**

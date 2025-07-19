@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
+
 import { Badge } from './Badge';
 
 // jest-axe is now automatically setup in jest.setup.js

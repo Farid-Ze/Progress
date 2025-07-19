@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Container,
@@ -16,6 +15,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import React from 'react';
 
 // Social media icons (placeholders)
 const FacebookIcon = () => <span aria-hidden="true">f</span>;

@@ -119,7 +119,7 @@ export const usePerformanceMonitoring = (
               value: lastEntry.startTime,
               rating: lastEntry.startTime <= 2500 ? 'good' : lastEntry.startTime <= 4000 ? 'needs-improvement' : 'poor',
               delta: lastEntry.startTime,
-              id: 'lcp-' + Date.now(),
+              id: `lcp-${  Date.now()}`,
               entries: entries as PerformanceEntry[],
             });
           });
@@ -135,7 +135,7 @@ export const usePerformanceMonitoring = (
               value: lastEntry.startTime,
               rating: lastEntry.startTime <= 1800 ? 'good' : lastEntry.startTime <= 3000 ? 'needs-improvement' : 'poor',
               delta: lastEntry.startTime,
-              id: 'fcp-' + Date.now(),
+              id: `fcp-${  Date.now()}`,
               entries: entries as PerformanceEntry[],
             });
           });
@@ -151,7 +151,7 @@ export const usePerformanceMonitoring = (
                 rating: entry.processingStart - entry.startTime <= 100 ? 'good' : 
                         entry.processingStart - entry.startTime <= 300 ? 'needs-improvement' : 'poor',
                 delta: entry.processingStart - entry.startTime,
-                id: 'fid-' + Date.now(),
+                id: `fid-${  Date.now()}`,
                 entries: [entry] as PerformanceEntry[],
               });
             });
@@ -173,7 +173,7 @@ export const usePerformanceMonitoring = (
           value: ttfb,
           rating: ttfb <= 600 ? 'good' : ttfb <= 1500 ? 'needs-improvement' : 'poor',
           delta: ttfb,
-          id: 'ttfb-' + Date.now(),
+          id: `ttfb-${  Date.now()}`,
           entries: [],
         });
       }

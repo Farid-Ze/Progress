@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Avatar as ChakraAvatar,
   AvatarProps as ChakraAvatarProps,
@@ -6,6 +5,7 @@ import {
   useStyleConfig,
   forwardRef,
 } from '@chakra-ui/react';
+import React from 'react';
 
 export interface AvatarProps extends Omit<ChakraAvatarProps, 'size'> {
   /**

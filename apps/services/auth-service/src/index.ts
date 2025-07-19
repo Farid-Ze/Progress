@@ -1,14 +1,14 @@
 // Auth Service - Simple Express Server
-const express = require('express');
-const cors = require('cors');
+import cors from 'cors';
+import express, { Request, Response, json } from 'express';
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(json({ limit: '10mb' }));
 
 // Routes
-app.post('/api/v1/auth/login', (req: any, res: any) => {
+app.post('/api/v1/auth/login', (_req: Request, res: Response) => {
   res.json({
     success: true,
     data: {
@@ -22,7 +22,7 @@ app.post('/api/v1/auth/login', (req: any, res: any) => {
   });
 });
 
-app.post('/api/v1/auth/register', (req: any, res: any) => {
+app.post('/api/v1/auth/register', (req: Request, res: Response) => {
   res.json({
     success: true,
     data: {
@@ -35,14 +35,14 @@ app.post('/api/v1/auth/register', (req: any, res: any) => {
   });
 });
 
-app.get('/health', (req: any, res: any) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({ status: 'OK', service: 'auth-service' });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env['PORT'] || 3001;
 
 app.listen(PORT, () => {
   console.log(`Auth Service running on port ${PORT}`);
 });
 
-module.exports = app;
+export default app;

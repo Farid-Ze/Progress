@@ -1,4 +1,3 @@
-import React, { useState, useRef, useEffect } from 'react';
 import {
   Box,
   Input,
@@ -13,6 +12,8 @@ import {
   useOutsideClick,
   forwardRef,
 } from '@chakra-ui/react';
+import React, { useState, useRef, useEffect } from 'react';
+
 import { useReducedMotion } from '../../hooks';
 
 // Icons would be imported from your icon library

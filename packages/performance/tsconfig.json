@@ -12,6 +12,8 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "composite": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "resolveJsonModule": true,
     "types": ["node", "jest"]
   },

@@ -1,24 +1,53 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    // React specific
     "jsx": "react-jsx",
-    "incremental": true,
+    "target": "es5",
+    "module": "esnext",
+    
+    // Package specific
+    "noEmit": false,
+    "composite": true,
     "declaration": true,
     "declarationMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    
+    // Enhanced checks for UI library
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    
+    // Path mapping for UI components
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/theme/*": ["./src/theme/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@merajut-asa/shared": ["../../packages/shared/src"]
+    },
+    
+    // Type roots for UI library
     "typeRoots": ["node_modules/@types", "types"],
-    "types": ["jest"]
+    "types": ["jest", "@testing-library/jest-dom"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "types/**/*.d.ts"],
-  "exclude": ["node_modules", "**/*.test.tsx", "**/*.test.ts", "**/*.spec.tsx", "**/*.spec.ts"]
+  
+  "include": [
+    "src/**/*.ts", 
+    "src/**/*.tsx", 
+    "types/**/*.d.ts"
+  ],
+  
+  "exclude": [
+    "node_modules",
+    "dist", 
+    "**/*.test.tsx", 
+    "**/*.test.ts", 
+    "**/*.spec.tsx", 
+    "**/*.spec.ts"
+  ]
 }

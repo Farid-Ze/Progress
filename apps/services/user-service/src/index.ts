@@ -1,14 +1,14 @@
 // User Service - Simple Express Server
-const express = require('express');
-const cors = require('cors');
+import cors from "cors";
+import express, { Request, Response, json } from "express";
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(json({ limit: '10mb' }));
 
 // Routes
-app.get('/api/v1/users', (req: any, res: any) => {
+app.get('/api/v1/users', (req: Request, res: Response) => {
   res.json({
     success: true,
     data: [
@@ -23,14 +23,14 @@ app.get('/api/v1/users', (req: any, res: any) => {
   });
 });
 
-app.get('/health', (req: any, res: any) => {
+app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'OK', service: 'user-service' });
 });
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env['PORT'] || 3003;
 
 app.listen(PORT, () => {
   console.log(`User Service running on port ${PORT}`);
 });
 
-module.exports = app;
+export default app;

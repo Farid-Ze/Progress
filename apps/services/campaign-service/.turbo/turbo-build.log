@@ -2,3 +2,16 @@
 > @merajut-asa/campaign-service@0.1.0 build
 > tsc
 
+[96msrc/index.ts[0m:[93m32[0m:[93m26[0m - [91merror[0m[90m TS4111: [0mProperty 'PORT' comes from an index signature, so it must be accessed with ['PORT'].
+
+[7m32[0m const PORT = process.env.PORT || 3002;
+[7m  [0m [91m                         ~~~~[0m
+
+
+Found 1 error in src/index.ts[90m:32[0m
+
+[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mLifecycle script `build` failed with error:[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mError: command failed[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  in workspace: @merajut-asa/campaign-service@0.1.0[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  at location: /workspaces/Progress/apps/services/campaign-service[0m 
+[0m

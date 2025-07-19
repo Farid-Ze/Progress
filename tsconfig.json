@@ -1,0 +1,95 @@
+{
+  "compilerOptions": {
+    // Modern JavaScript/TypeScript support
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    
+    // Strict type checking for better code quality
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    
+    // Additional type checking
+    "noUnusedLocals": false,  // Disabled for development
+    "noUnusedParameters": false,  // Disabled for development
+    // "exactOptionalPropertyTypes": true,  // Disabled temporarily for smoother development
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    
+    // Module resolution
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowJs": true,
+    "checkJs": false,
+    
+    // Emit
+    "noEmit": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "removeComments": false,
+    "importHelpers": true,
+    
+    // Advanced
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
+    
+    // Path mapping for better imports
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@merajut-asa/ui": ["./packages/ui/src"],
+      "@merajut-asa/performance": ["./packages/performance/src"],
+      "@services/*": ["./apps/services/*/src"],
+      "@shared/*": ["./packages/shared/src"]
+    },
+    
+    // Type definitions
+    "types": ["node", "jest"],
+    "typeRoots": ["./node_modules/@types", "./packages/ui/types", "./types"]
+  },
+  
+  // Global includes and excludes
+  "include": [
+    "packages/shared/src/**/*"
+  ],
+  
+  "exclude": [
+    "node_modules",
+    "**/dist/**",
+    "**/build/**",
+    "**/.next/**",
+    "**/coverage/**",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts", 
+    "**/*.spec.tsx",
+    "types/global.d.ts"
+  ],
+  
+  // References for project composition
+//   "references": [
+//     { "path": "./apps/web" },
+//     { "path": "./apps/api-gateway" },
+//     { "path": "./apps/services/auth-service" },
+//     { "path": "./apps/services/campaign-service" },
+//     { "path": "./apps/services/payment-service" },
+//     { "path": "./apps/services/user-service" },
+//     { "path": "./apps/services/community-service" },
+//     { "path": "./packages/ui" },
+//     { "path": "./packages/performance" }
+//   ]
+}

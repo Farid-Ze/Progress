@@ -1,0 +1,239 @@
+
+> merajut-asa@0.1.0 lint
+> eslint . --ext .js,.jsx,.ts,.tsx
+
+
+/workspaces/Progress/apps/api-gateway/src/index.ts
+  15:3  warning  Unexpected console statement  no-console
+
+/workspaces/Progress/apps/services/auth-service/src/index.ts
+  45:3  warning  Unexpected console statement  no-console
+
+/workspaces/Progress/apps/services/campaign-service/src/index.ts
+  35:3  warning  Unexpected console statement  no-console
+
+/workspaces/Progress/apps/services/community-service/src/controllers/academyController.ts
+    5:3   error  ES2015 module syntax is preferred over namespaces  @typescript-eslint/no-namespace
+  565:33  error  '_lessonId' is assigned a value but never used     @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/services/community-service/src/controllers/feedbackController.ts
+    5:3   error  ES2015 module syntax is preferred over namespaces  @typescript-eslint/no-namespace
+  199:11  error  Unexpected lexical declaration in case block       no-case-declarations
+  605:13  error  'period' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/services/community-service/src/controllers/impactController.ts
+  770:13  error    'period' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  888:23  warning  Unexpected any. Specify a different type     @typescript-eslint/no-explicit-any
+
+/workspaces/Progress/apps/services/community-service/src/controllers/katalisatorController.ts
+  321:7   error  '_description' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  322:7   error  '_documents' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  454:13  error  'period' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/services/community-service/src/controllers/mentorshipController.ts
+  253:7   error  '_mockGoals' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  721:7   error  '_description' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  923:13  error  'period' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/services/community-service/src/index.ts
+  81:3  warning  Unexpected console statement  no-console
+  82:3  warning  Unexpected console statement  no-console
+  83:3  warning  Unexpected console statement  no-console
+  84:3  warning  Unexpected console statement  no-console
+
+/workspaces/Progress/apps/services/payment-service/src/index.ts
+  42:3  warning  Unexpected console statement  no-console
+
+/workspaces/Progress/apps/services/payment-service/src/utils/logger.ts
+   3:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   4:5   warning  Unexpected console statement              no-console
+   6:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   7:5   warning  Unexpected console statement              no-console
+   9:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  10:5   warning  Unexpected console statement              no-console
+  12:35  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  14:7   warning  Unexpected console statement              no-console
+
+/workspaces/Progress/apps/services/user-service/src/index.ts
+  33:3  warning  Unexpected console statement  no-console
+
+/workspaces/Progress/apps/web/jest.setup.js
+  4:8  error  Unable to resolve path to module '../../../jest.setup.js'  import/no-unresolved
+
+/workspaces/Progress/apps/web/public/sw.js
+   22:9   warning  Unexpected console statement  no-console
+   68:13  warning  Unexpected console statement  no-console
+  153:11  warning  Unexpected console statement  no-console
+  161:5   warning  Unexpected console statement  no-console
+
+/workspaces/Progress/apps/web/src/components/campaign/DonationForm.tsx
+  72:3  error  'campaignName' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/web/src/pages/akademi/index.tsx
+  1:1  error  `react` import should occur after import of `next/head`  import/order
+
+/workspaces/Progress/apps/web/src/pages/campaign/[slug].tsx
+    9:3  error    'StatLabel' is defined but never used                                                                                        @typescript-eslint/no-unused-vars
+   33:3  error    'IconButton' is defined but never used                                                                                       @typescript-eslint/no-unused-vars
+  118:3  warning  Caution: `React` also has a named export `useEffect`. Check if you meant to write `import {useEffect} from 'react'` instead  import/no-named-as-default-member
+
+/workspaces/Progress/apps/web/src/pages/campaign/enhanced-details.tsx
+   16:3   error    'CardHeader' is defined but never used                                                                                   @typescript-eslint/no-unused-vars
+   37:3   error    'Flex' is defined but never used                                                                                         @typescript-eslint/no-unused-vars
+   38:3   error    'Icon' is defined but never used                                                                                         @typescript-eslint/no-unused-vars
+   93:10  error    'isAnonymous' is assigned a value but never used                                                                         @typescript-eslint/no-unused-vars
+   93:23  error    'setIsAnonymous' is assigned a value but never used                                                                      @typescript-eslint/no-unused-vars
+   99:6   warning  React Hook useEffect has a missing dependency: 'fetchCampaignDetails'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  143:7   warning  Unexpected console statement                                                                                             no-console
+  180:14  error    'error' is defined but never used                                                                                        @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/web/src/pages/impact/index.tsx
+   1:1  error  `react` import should occur after import of `next/head`  import/order
+  39:7  error  'FiUsers' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  40:7  error  'FiDollarSign' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  41:7  error  'FiTarget' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  42:7  error  'FiBarChart3' is assigned a value but never used         @typescript-eslint/no-unused-vars
+  43:7  error  'FiPieChart' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  44:7  error  'FiMapPin' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  45:7  error  'FiAward' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  46:7  error  'FiCalendar' is assigned a value but never used          @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/web/src/pages/index.tsx
+  11:3   error    'Skeleton' is defined but never used                                 @typescript-eslint/no-unused-vars
+  18:8   warning  Using exported name 'CampaignCard' as identifier for default import  import/no-named-as-default
+  69:10  error    'searchQuery' is assigned a value but never used                     @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/web/src/pages/katalisator/index.tsx
+   1:1  error  `react` import should occur after import of `next/head`  import/order
+  10:3  error  'Grid' is defined but never used                         @typescript-eslint/no-unused-vars
+  11:3  error  'GridItem' is defined but never used                     @typescript-eslint/no-unused-vars
+  20:3  error  'Avatar' is defined but never used                       @typescript-eslint/no-unused-vars
+  34:7  error  'FiTrendingUp' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  35:7  error  'FiAward' is assigned a value but never used             @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/web/src/pages/mentorship/index.tsx
+   1:1  error  `react` import should occur after import of `next/head`  import/order
+  13:3  error  'Icon' is defined but never used                         @typescript-eslint/no-unused-vars
+  42:7  error  'FiUser' is assigned a value but never used              @typescript-eslint/no-unused-vars
+  44:7  error  'FiStar' is assigned a value but never used              @typescript-eslint/no-unused-vars
+  47:7  error  'FiBookOpen' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  48:7  error  'FiTrendingUp' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  49:7  error  'FiAward' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  51:7  error  'FiTarget' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  52:7  error  'FiHeart' is assigned a value but never used             @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/apps/web/src/pages/suara-komunitas/index.tsx
+    1:1   error    `react` import should occur after import of `next/head`  import/order
+   44:7   error    'FiCheckCircle' is assigned a value but never used       @typescript-eslint/no-unused-vars
+   46:7   error    'FiStar' is assigned a value but never used              @typescript-eslint/no-unused-vars
+  368:97  warning  Unexpected any. Specify a different type                 @typescript-eslint/no-explicit-any
+
+/workspaces/Progress/infrastructure/database/mongodb/init.js
+    4:1  error  'db' is not defined  no-undef
+    4:6  error  'db' is not defined  no-undef
+    7:1  error  'db' is not defined  no-undef
+   51:1  error  'db' is not defined  no-undef
+   84:1  error  'db' is not defined  no-undef
+  144:1  error  'db' is not defined  no-undef
+  184:1  error  'db' is not defined  no-undef
+  217:1  error  'db' is not defined  no-undef
+  265:1  error  'db' is not defined  no-undef
+  310:1  error  'db' is not defined  no-undef
+  355:1  error  'db' is not defined  no-undef
+  356:1  error  'db' is not defined  no-undef
+  357:1  error  'db' is not defined  no-undef
+  358:1  error  'db' is not defined  no-undef
+  359:1  error  'db' is not defined  no-undef
+  362:1  error  'db' is not defined  no-undef
+  363:1  error  'db' is not defined  no-undef
+  366:1  error  'db' is not defined  no-undef
+  367:1  error  'db' is not defined  no-undef
+  368:1  error  'db' is not defined  no-undef
+  371:1  error  'db' is not defined  no-undef
+  372:1  error  'db' is not defined  no-undef
+  373:1  error  'db' is not defined  no-undef
+  376:1  error  'db' is not defined  no-undef
+  377:1  error  'db' is not defined  no-undef
+  378:1  error  'db' is not defined  no-undef
+  381:1  error  'db' is not defined  no-undef
+  382:1  error  'db' is not defined  no-undef
+  383:1  error  'db' is not defined  no-undef
+  386:1  error  'db' is not defined  no-undef
+  387:1  error  'db' is not defined  no-undef
+  388:1  error  'db' is not defined  no-undef
+  391:1  error  'db' is not defined  no-undef
+  392:1  error  'db' is not defined  no-undef
+  393:1  error  'db' is not defined  no-undef
+  396:1  error  'db' is not defined  no-undef
+
+/workspaces/Progress/jest.setup.js
+  18:25  warning  Unexpected console statement  no-console
+  19:24  warning  Unexpected console statement  no-console
+  21:3   warning  Unexpected console statement  no-console
+  32:3   warning  Unexpected console statement  no-console
+
+/workspaces/Progress/packages/shared/src/hooks/index.ts
+   47:6   warning  React Hook useCallback was passed a dependency list that is not an array literal. This means we can't statically verify whether you've passed the correct dependencies                                                                                       react-hooks/exhaustive-deps
+   47:6   warning  React Hook useCallback has missing dependencies: 'asyncFunction' and 'options'. Either include them or remove the dependency array. If 'asyncFunction' changes too often, find the parent component that defines it and wrap that definition in useCallback  react-hooks/exhaustive-deps
+   92:13  warning  Unexpected console statement                                                                                                                                                                                                                                 no-console
+  108:9   warning  Unexpected console statement                                                                                                                                                                                                                                 no-console
+  285:7   warning  Unexpected console statement                                                                                                                                                                                                                                 no-console
+  295:7   warning  Unexpected console statement                                                                                                                                                                                                                                 no-console
+  451:6   warning  React Hook useCallback has a missing dependency: 'options'. Either include it or remove the dependency array                                                                                                                                                 react-hooks/exhaustive-deps
+  462:7   warning  Unexpected console statement                                                                                                                                                                                                                                 no-console
+  466:6   warning  React Hook useCallback has a missing dependency: 'options'. Either include it or remove the dependency array                                                                                                                                                 react-hooks/exhaustive-deps
+
+/workspaces/Progress/packages/shared/src/types.ts
+  495:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  517:36  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  532:44  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/workspaces/Progress/packages/ui/src/components/CampaignCard/CampaignCard.tsx
+    8:3  error  'Flex' is defined but never used                 @typescript-eslint/no-unused-vars
+    9:3  error  'useStyleConfig' is defined but never used       @typescript-eslint/no-unused-vars
+   14:3  error  'Link' is defined but never used                 @typescript-eslint/no-unused-vars
+  127:5  error  'id' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  128:5  error  'slug' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  143:9  error  'percentage' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/packages/ui/src/components/Layout/AdvancedLayout.tsx
+    5:3   error    'HStack' is defined but never used        @typescript-eslint/no-unused-vars
+  149:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  150:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  482:58  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  483:43  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/workspaces/Progress/packages/ui/src/components/Navigation/Navigation.tsx
+  4:3  error  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/packages/ui/src/components/Progress/ProgressBar.tsx
+  8:3  error  'useStyleConfig' is defined but never used  @typescript-eslint/no-unused-vars
+
+/workspaces/Progress/packages/ui/src/hooks/useAccessibility.ts
+  119:9   warning  Unexpected console statement              no-console
+  122:11  warning  Unexpected console statement              no-console
+  131:13  warning  Unexpected console statement              no-console
+  132:13  warning  Unexpected console statement              no-console
+  134:15  warning  Unexpected console statement              no-console
+  137:11  warning  Unexpected console statement              no-console
+  142:7   warning  Unexpected console statement              no-console
+  159:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  160:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  173:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/workspaces/Progress/packages/ui/src/hooks/usePerformanceMonitoring.ts
+   64:9   warning  Unexpected console statement              no-console
+   96:9   warning  Unexpected console statement              no-console
+  115:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  131:62  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  147:37  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  162:11  warning  Unexpected console statement              no-console
+  221:51  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  222:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  254:7   warning  Unexpected console statement              no-console
+  278:7   warning  Unexpected console statement              no-console
+  281:55  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  282:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 166 problems (97 errors, 69 warnings)
+

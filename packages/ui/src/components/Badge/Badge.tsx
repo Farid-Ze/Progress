@@ -1,10 +1,10 @@
-import React from 'react';
 import {
   Badge as ChakraBadge,
   BadgeProps as ChakraBadgeProps,
   useStyleConfig,
   forwardRef,
 } from '@chakra-ui/react';
+import React from 'react';
 
 export interface BadgeProps extends Omit<ChakraBadgeProps, 'size'> {
   /**

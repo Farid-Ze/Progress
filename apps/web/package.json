@@ -15,6 +15,7 @@
     "@emotion/styled": "^11.11.0",
     "@merajut-asa/ui": "file:../../packages/ui",
     "@merajut-asa/performance": "file:../../packages/performance",
+    "@merajut-asa/shared": "file:../../packages/shared",
     "framer-motion": "^10.15.1",
     "next": "^13.4.13",
     "next-pwa": "^5.6.0",

@@ -1,4 +1,3 @@
-import React from 'react';
 import { 
   Box, 
   Text, 
@@ -10,8 +9,9 @@ import {
   StatHelpText,
 } from '@chakra-ui/react';
 import { Card, Tag, Avatar } from '@merajut-asa/ui';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 export interface CampaignCardProps {
   /**
@@ -82,7 +82,7 @@ export const CampaignCard: React.FC<CampaignCardProps> = ({
   currentAmount,
   goalAmount,
   daysLeft,
-  contributorCount,
+  contributorCount: _contributorCount, // Prefixed unused param
   creatorName,
   creatorAvatarUrl,
   isLoading = false,
@@ -100,12 +100,7 @@ export const CampaignCard: React.FC<CampaignCardProps> = ({
     }).format(amount);
   };
 
-  // Determine status based on days left
-  const getStatusColor = () => {
-    if (daysLeft <= 3) return 'error';
-    if (daysLeft <= 7) return 'warning';
-    return 'info';
-  };
+  // Removed unused getStatusColor function
 
   if (isLoading) {
     return <Card isLoading aria-label="Loading campaign" />;

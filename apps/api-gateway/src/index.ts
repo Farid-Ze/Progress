@@ -1,18 +1,18 @@
 // API Gateway - Simple Express Server
-const express = require("express");
-const cors = require("cors");
+import cors from "cors";
+import express, { Request, Response, json } from "express";
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(json());
 
-app.get("/health", (req: any, res: any) => {
+app.get("/health", (_req: Request, res: Response) => {
   res.json({ status: "OK", service: "api-gateway" });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env['PORT'] || 3000;
 app.listen(PORT, () => {
   console.log(`API Gateway running on port ${PORT}`);
 });
 
-module.exports = app;
+export default app;

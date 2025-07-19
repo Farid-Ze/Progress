@@ -1,6 +1,6 @@
 // Community Service - Express Server with Controllers
-import express, { Request, Response } from 'express';
 import cors from 'cors';
+import express, { Request, Response, json } from 'express';
 
 // Import controllers
 import {
@@ -13,7 +13,6 @@ import {
   getPopularCourses,
   searchCourses
 } from './controllers/academyController';
-
 import {
   getAllFeedback,
   getFeedbackById,
@@ -29,10 +28,10 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(json({ limit: '10mb' }));
 
 // Health check
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({ 
     status: 'OK', 
     service: 'community-service',
@@ -61,7 +60,7 @@ app.post('/api/v1/feedback/:feedbackId/vote', voteFeedback);
 app.post('/api/v1/feedback/:feedbackId/responses', addFeedbackResponse);
 
 // Legacy community routes
-app.get('/api/v1/communities', (req: Request, res: Response) => {
+app.get('/api/v1/communities', (_req: Request, res: Response) => {
   res.json({
     success: true,
     data: [
@@ -76,7 +75,7 @@ app.get('/api/v1/communities', (req: Request, res: Response) => {
   });
 });
 
-const PORT = process.env.PORT || 3004;
+const PORT = process.env['PORT'] || 3004;
 
 app.listen(PORT, () => {
   console.log(`Community Service running on port ${PORT}`);

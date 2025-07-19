@@ -1,0 +1,25 @@
+# Ignore build outputs
+dist/
+build/
+.next/
+coverage/
+
+# Ignore dependencies
+node_modules/
+
+# Ignore configuration files that should not be formatted
+*.min.js
+*.bundle.js
+
+# Ignore generated files
+*.d.ts
+!src/**/*.d.ts
+
+# Ignore lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore logs
+*.log
+.DS_Store

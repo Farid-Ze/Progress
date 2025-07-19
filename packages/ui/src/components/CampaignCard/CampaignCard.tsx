@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Heading,
@@ -16,6 +15,8 @@ import {
   Skeleton,
   SkeletonText,
 } from '@chakra-ui/react';
+import React from 'react';
+
 import { Card } from '../Card/Card';
 import { CampaignProgress } from '../Progress';
 import { Tag } from '../Tag/Tag';

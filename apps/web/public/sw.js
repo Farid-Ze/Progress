@@ -1,3 +1,4 @@
+/* global clients */
 // Service Worker untuk PWA capabilities
 const CACHE_NAME = 'merajut-asa-v1';
 const OFFLINE_URL = '/offline';

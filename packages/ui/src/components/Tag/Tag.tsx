@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Tag as ChakraTag,
   TagProps as ChakraTagProps,
@@ -7,6 +6,7 @@ import {
   useStyleConfig,
   forwardRef,
 } from '@chakra-ui/react';
+import React from 'react';
 
 export interface TagProps extends Omit<ChakraTagProps, 'size'> {
   /**

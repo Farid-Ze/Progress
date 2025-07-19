@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Alert as ChakraAlert,
   AlertProps as ChakraAlertProps,
@@ -9,6 +8,8 @@ import {
   useStyleConfig,
   forwardRef,
 } from '@chakra-ui/react';
+import React from 'react';
+
 import { useReducedMotion } from '../../hooks';
 
 export interface AlertProps extends Omit<ChakraAlertProps, 'status'> {

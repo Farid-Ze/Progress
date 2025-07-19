@@ -885,7 +885,7 @@ export const exportImpactData = async (req: Request, res: Response) => {
     } = req.query;
 
     // Filter data based on parameters
-    let exportData: any = {
+    const exportData: any = {
       metadata: {
         exportDate: new Date(),
         format,

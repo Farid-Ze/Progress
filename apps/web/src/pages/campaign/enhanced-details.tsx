@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import {
   Box,
   Container,
@@ -42,6 +40,8 @@ import {
   Tag,
   TagLabel
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { useState, useEffect } from 'react';
 
 interface Campaign {
   id: string;

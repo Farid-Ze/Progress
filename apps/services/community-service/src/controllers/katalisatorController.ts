@@ -318,8 +318,8 @@ export const createPartnerRegistration = async (req: Request, res: Response) => 
       type,
       region,
       contactInfo,
-      description,
-      documents
+      _description,
+      _documents
     } = req.body;
     
     // Validation

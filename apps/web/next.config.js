@@ -52,7 +52,7 @@ const nextConfig = {
       },
     ];
   },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',

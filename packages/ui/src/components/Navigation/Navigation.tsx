@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   Box,
   Flex,
@@ -17,6 +16,8 @@ import {
   HStack,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import React, { useState } from 'react';
+
 import { useReducedMotion } from '../../hooks';
 
 // Icons would be imported from your icon library

@@ -250,7 +250,7 @@ const mockSessions: MentorshipSession[] = [
   }
 ];
 
-const mockGoals: MentorshipGoal[] = [
+const _mockGoals: MentorshipGoal[] = [
   {
     id: '1',
     mentorshipRequestId: '1',
@@ -495,7 +495,7 @@ export const createMentorshipRequest = async (req: Request, res: Response) => {
     const { mentorId } = req.params;
     const {
       topic,
-      description,
+      _description,
       goals,
       preferredDuration,
       preferredFrequency,
@@ -538,7 +538,7 @@ export const createMentorshipRequest = async (req: Request, res: Response) => {
     if (!topic || !description || !goals || !Array.isArray(goals)) {
       return res.status(400).json({
         success: false,
-        message: 'Topic, description, and goals are required'
+        message: 'Topic, _description, and goals are required'
       });
     }
 
@@ -548,7 +548,7 @@ export const createMentorshipRequest = async (req: Request, res: Response) => {
       mentorId,
       status: 'pending',
       topic,
-      description,
+      _description,
       goals,
       preferredDuration: preferredDuration || 4,
       preferredFrequency: preferredFrequency || 'weekly',
@@ -718,7 +718,7 @@ export const scheduleMentorshipSession = async (req: Request, res: Response) => 
     const { requestId } = req.params;
     const {
       title,
-      description,
+      _description,
       scheduledAt,
       duration = 60,
       type = 'video-call',

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Flex,
@@ -8,6 +7,7 @@ import {
   StatHelpText,
   Text,
 } from '@chakra-ui/react';
+import React from 'react';
 
 interface CampaignProgressProps {
   /**

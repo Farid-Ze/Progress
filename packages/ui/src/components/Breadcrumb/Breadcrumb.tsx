@@ -1,14 +1,14 @@
-import React from 'react';
 import {
   Breadcrumb as ChakraBreadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
+  // BreadcrumbSeparator, - Removed unused
   Box,
   Text,
   HStack,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import React from 'react';
 
 // Icons as React components
 const ChevronRightIcon = ({ color = 'currentColor' }: { color?: string }) => (

@@ -120,7 +120,7 @@ export const useAccessibilityMonitoring = (
         
         if (violations.length > 0) {
           console.group('Accessibility Violations:');
-          violations.forEach((violation, index) => {
+          violations.forEach((violation, _index) => {
             const severityIcon = {
               low: '🟡',
               medium: '🟠',
@@ -208,7 +208,7 @@ const checkContrastRatio = () => {
           wcagReference: '1.4.3 Contrast (Minimum)',
         });
       }
-    } catch (error) {
+    } catch {
       passed++; // Assume pass if we can't check
     }
   });

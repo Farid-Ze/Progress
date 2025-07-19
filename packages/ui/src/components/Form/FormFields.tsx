@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   FormControl,
   FormLabel,
@@ -13,6 +12,7 @@ import {
   forwardRef,
   Box,
 } from '@chakra-ui/react';
+import React from 'react';
 
 // Base form field props
 interface BaseFormFieldProps {

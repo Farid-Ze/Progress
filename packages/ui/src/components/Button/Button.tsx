@@ -1,11 +1,11 @@
-import React from 'react';
 import {
   Button as ChakraButton,
   ButtonProps as ChakraButtonProps,
   forwardRef,
   Spinner,
-  useStyleConfig,
+  // useStyleConfig, - Removed unused
 } from '@chakra-ui/react';
+import React from 'react';
 
 export interface ButtonProps extends Omit<ChakraButtonProps, 'size' | 'variant'> {
   /**

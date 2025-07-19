@@ -1,7 +1,3 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Image from 'next/image';
 import { 
   Box, 
   Heading, 
@@ -38,6 +34,10 @@ import {
   Badge,
 } from '@chakra-ui/react';
 import { Layout, Avatar, Tag, Alert } from '@merajut-asa/ui';
+import Head from 'next/head';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 
 // This would come from your API in a real implementation
 const MOCK_CAMPAIGN = {

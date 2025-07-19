@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   BoxProps,
@@ -9,6 +8,7 @@ import {
   useStyleConfig,
   forwardRef,
 } from '@chakra-ui/react';
+import React from 'react';
 
 export interface CardProps extends Omit<BoxProps, 'title'> {
   /**

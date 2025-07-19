@@ -10,6 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@merajut-asa/shared": "file:../../../packages/shared",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-rate-limit": "^6.10.0",

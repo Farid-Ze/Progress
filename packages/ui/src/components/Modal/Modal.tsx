@@ -1,4 +1,3 @@
-import React, { useEffect, useRef } from 'react';
 import {
   Modal as ChakraModal,
   ModalOverlay,
@@ -9,14 +8,16 @@ import {
   ModalCloseButton,
   ModalProps as ChakraModalProps,
   useDisclosure,
-  Box,
+  // Box, - Removed unused
   Heading,
   Text,
-  IconButton,
-  VStack,
+  // IconButton, - Removed unused
+  // VStack, - Removed unused
   HStack,
   Divider,
 } from '@chakra-ui/react';
+import React, { useEffect, useRef } from 'react';
+
 import { Button } from '../Button';
 
 export interface ModalProps extends Omit<ChakraModalProps, 'children'> {
@@ -111,7 +112,7 @@ export const Modal: React.FC<ModalProps> = ({
   closeOnEsc = true,
   showCloseButton = true,
   closeButtonAriaLabel = 'Close modal',
-  autoFocus = true,
+  // autoFocus removed for accessibility compliance
   returnFocusOnClose = true,
   initialFocusRef,
   finalFocusRef,
@@ -162,7 +163,6 @@ export const Modal: React.FC<ModalProps> = ({
       size={size}
       closeOnOverlayClick={closeOnOverlayClick}
       closeOnEsc={closeOnEsc}
-      autoFocus={autoFocus}
       returnFocusOnClose={returnFocusOnClose}
       initialFocusRef={initialFocusRef}
       finalFocusRef={finalFocusRef}

@@ -1,3 +1,4 @@
 export { useReducedMotion } from './useReducedMotion';
 export * from './usePerformanceMonitoring';
-export * from './useAccessibility';
+// Export specific accessibility hooks to avoid duplicate useReducedMotion
+export { useAccessibilityMonitoring, useSkipLinks } from './useAccessibility';

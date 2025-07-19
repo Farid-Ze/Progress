@@ -1,4 +1,5 @@
 import { extendTheme } from '@chakra-ui/react';
+
 import {
   colors,
   typography,
@@ -367,7 +368,7 @@ export const theme = extendTheme({
 
   // Global styles
   styles: {
-    global: (props: any) => ({
+    global: () => ({
       // Ensure proper focus management
       '*:focus': {
         outline: 'none',

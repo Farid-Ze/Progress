@@ -1,7 +1,7 @@
-const { configure } = require('@testing-library/react');
-const { toHaveNoViolations } = require('jest-axe');
+import { configure } from '@testing-library/react';
+import { toHaveNoViolations } from 'jest-axe';
 
-require('@testing-library/jest-dom');
+import '@testing-library/jest-dom';
 
 // Configure testing library
 configure({ testIdAttribute: 'data-testid' });

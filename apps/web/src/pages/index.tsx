@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-import Head from 'next/head';
 import { 
   Box, 
   Heading, 
@@ -14,6 +12,9 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { Layout, Search, Alert } from '@merajut-asa/ui';
+import Head from 'next/head';
+import React, { useState } from 'react';
+
 import CampaignCard from '../components/campaign/CampaignCard';
 
 // This would come from your API in a real implementation

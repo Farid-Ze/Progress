@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Box,
   Container,
@@ -10,6 +9,8 @@ import {
   useBreakpointValue,
   SystemStyleObject,
 } from '@chakra-ui/react';
+import React from 'react';
+
 import { Breadcrumb, BreadcrumbItemData } from '../Breadcrumb';
 
 export interface PageLayoutProps {

@@ -1,14 +1,14 @@
 // Campaign Service - Simple Express Server
-const express = require('express');
-const cors = require('cors');
+import cors from "cors";
+import express, { Request, Response, json } from "express";
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json({ limit: '10mb' }));
+app.use(json({ limit: '10mb' }));
 
 // Routes
-app.get('/api/v1/campaigns', (req: any, res: any) => {
+app.get('/api/v1/campaigns', (req: Request, res: Response) => {
   res.json({
     success: true,
     data: [
@@ -25,14 +25,14 @@ app.get('/api/v1/campaigns', (req: any, res: any) => {
   });
 });
 
-app.get('/health', (req: any, res: any) => {
+app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'OK', service: 'campaign-service' });
 });
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env['PORT'] || 3002;
 
 app.listen(PORT, () => {
   console.log(`Campaign Service running on port ${PORT}`);
 });
 
-module.exports = app;
+export default app;

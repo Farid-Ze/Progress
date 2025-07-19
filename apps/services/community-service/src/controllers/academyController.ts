@@ -91,6 +91,8 @@ interface Enrollment {
   lastAccessedAt: Date;
 }
 
+// Temporarily commented out unused interfaces - keeping for future use
+/*
 interface Quiz {
   id: string;
   lessonId: string;
@@ -122,6 +124,7 @@ interface Assignment {
   allowedFileTypes?: string[];
   maxFileSize?: number; // in MB
 }
+*/
 
 // Mock data
 const mockCourses: Course[] = [
@@ -277,7 +280,7 @@ export const getAllCourses = async (req: Request, res: Response) => {
       );
     }
 
-    // Search in title, description, and tags
+    // Search in title, _description, and tags
     if (search && typeof search === 'string') {
       const searchTerm = search.toLowerCase();
       courses = courses.filter(course =>
@@ -559,7 +562,7 @@ export const getUserEnrollments = async (req: Request, res: Response) => {
  */
 export const updateLessonProgress = async (req: Request, res: Response) => {
   try {
-    const { courseId, lessonId } = req.params;
+    const { courseId, lessonId: _lessonId } = req.params;
     const { completed } = req.body;
     const userId = req.user?.id;
 
@@ -670,7 +673,7 @@ export const getCourseAnalytics = async (req: Request, res: Response) => {
         '51-75%': courseEnrollments.filter(e => e.progress > 50 && e.progress <= 75).length,
         '76-100%': courseEnrollments.filter(e => e.progress > 75).length
       },
-      popularModules: course.modules.map((module, index) => ({
+      popularModules: course.modules.map((module, _index) => ({
         title: module.title,
         completionRate: Math.random() * 100, // Mock data
         avgTimeSpent: Math.random() * 60 // Mock data in minutes
