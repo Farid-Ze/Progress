@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 // Extend Express Request type to include user property
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       user?: {
@@ -347,7 +348,7 @@ export const getAllCourses = async (req: Request, res: Response) => {
       avgRating: courses.reduce((acc, c) => acc + c.rating, 0) / courses.length
     };
 
-    res.json({
+    return res.json({
       success: true,
       data: {
         courses: paginatedCourses,
@@ -360,7 +361,7 @@ export const getAllCourses = async (req: Request, res: Response) => {
       }
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to fetch courses',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -402,12 +403,12 @@ export const getCourseById = async (req: Request, res: Response) => {
       currentLesson: enrollment?.currentLessonId
     };
 
-    res.json({
+    return res.json({
       success: true,
       data: courseWithEnrollment
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to fetch course',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -451,6 +452,13 @@ export const enrollInCourse = async (req: Request, res: Response) => {
       });
     }
 
+    if (!courseId) {
+      return res.status(400).json({
+        success: false,
+        message: 'Course ID is required'
+      });
+    }
+
     // Create new enrollment
     const newEnrollment: Enrollment = {
       id: Date.now().toString(),
@@ -466,16 +474,19 @@ export const enrollInCourse = async (req: Request, res: Response) => {
     // Update course enrollment count
     const courseIndex = mockCourses.findIndex(c => c.id === courseId);
     if (courseIndex !== -1) {
-      mockCourses[courseIndex].enrollmentCount++;
+      const course = mockCourses[courseIndex];
+      if (course) {
+        course.enrollmentCount++;
+      }
     }
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: 'Successfully enrolled in course',
       data: newEnrollment
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to enroll in course',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -536,7 +547,7 @@ export const getUserEnrollments = async (req: Request, res: Response) => {
       avgProgress: enrollmentsWithCourses.reduce((acc, e) => acc + e.progress, 0) / enrollmentsWithCourses.length || 0
     };
 
-    res.json({
+    return res.json({
       success: true,
       data: {
         enrollments: paginatedEnrollments,
@@ -549,7 +560,7 @@ export const getUserEnrollments = async (req: Request, res: Response) => {
       }
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to fetch user enrollments',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -562,7 +573,7 @@ export const getUserEnrollments = async (req: Request, res: Response) => {
  */
 export const updateLessonProgress = async (req: Request, res: Response) => {
   try {
-    const { courseId, lessonId: _lessonId } = req.params;
+    const { courseId } = req.params;
     const { completed } = req.body;
     const userId = req.user?.id;
 
@@ -606,27 +617,33 @@ export const updateLessonProgress = async (req: Request, res: Response) => {
 
     // Update enrollment
     const enrollmentIndex = mockEnrollments.findIndex(e => e.id === enrollment.id);
+    let updatedEnrollment: any = null;
+    
     if (enrollmentIndex !== -1) {
-      mockEnrollments[enrollmentIndex].progress = newProgress;
-      mockEnrollments[enrollmentIndex].lastAccessedAt = new Date();
+      const enrollmentToUpdate = mockEnrollments[enrollmentIndex];
+      if (enrollmentToUpdate) {
+        enrollmentToUpdate.progress = newProgress;
+        enrollmentToUpdate.lastAccessedAt = new Date();
 
-      if (newProgress === 100 && !mockEnrollments[enrollmentIndex].completedAt) {
-        mockEnrollments[enrollmentIndex].completedAt = new Date();
-        mockEnrollments[enrollmentIndex].certificateUrl = `/certificates/${courseId}-${userId}.pdf`;
+        if (newProgress === 100 && !enrollmentToUpdate.completedAt) {
+          enrollmentToUpdate.completedAt = new Date();
+          enrollmentToUpdate.certificateUrl = `/certificates/${courseId}-${userId}.pdf`;
+        }
+        updatedEnrollment = enrollmentToUpdate;
       }
     }
 
-    res.json({
+    return res.json({
       success: true,
       message: 'Progress updated successfully',
       data: {
         progress: newProgress,
         completed: newProgress === 100,
-        certificateUrl: mockEnrollments[enrollmentIndex].certificateUrl
+        certificateUrl: updatedEnrollment?.certificateUrl
       }
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to update progress',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -680,12 +697,12 @@ export const getCourseAnalytics = async (req: Request, res: Response) => {
       }))
     };
 
-    res.json({
+    return res.json({
       success: true,
       data: analytics
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to fetch course analytics',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -721,12 +738,12 @@ export const getPopularCourses = async (req: Request, res: Response) => {
       .sort((a, b) => b.popularityScore - a.popularityScore)
       .slice(0, parseInt(limit as string));
 
-    res.json({
+    return res.json({
       success: true,
       data: popularCourses
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to fetch popular courses',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -819,7 +836,7 @@ export const searchCourses = async (req: Request, res: Response) => {
 
     const paginatedCourses = courses.slice(startIndex, endIndex);
 
-    res.json({
+    return res.json({
       success: true,
       data: {
         courses: paginatedCourses,
@@ -843,7 +860,7 @@ export const searchCourses = async (req: Request, res: Response) => {
       }
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to search courses',
       error: error instanceof Error ? error.message : 'Unknown error'

@@ -317,9 +317,9 @@ export const createPartnerRegistration = async (req: Request, res: Response) => 
       name,
       type,
       region,
-      contactInfo,
-      _description,
-      _documents
+      contactInfo
+      // description,
+      // documents
     } = req.body;
     
     // Validation
@@ -451,7 +451,7 @@ export const updatePartner = async (req: Request, res: Response) => {
 export const getRegionalImpactAnalytics = async (req: Request, res: Response) => {
   try {
     const { region } = req.params;
-    const { period = 'ytd' } = req.query;
+    // const { period = 'ytd' } = req.query; // Could be used for analytics filtering
     
     const regionStats = mockRegionalStats.find(stat => 
       stat.region.toLowerCase() === region.toLowerCase()

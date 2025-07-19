@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 // Extend Express Request type to include user property
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
     interface Request {
       user?: {
@@ -195,11 +196,12 @@ export const getAllFeedback = async (req: Request, res: Response) => {
           aValue = a.votes;
           bValue = b.votes;
           break;
-        case 'priority':
+        case 'priority': {
           const priorityOrder = { high: 3, medium: 2, low: 1 };
           aValue = priorityOrder[a.priority];
           bValue = priorityOrder[b.priority];
           break;
+        }
         case 'createdAt':
         default:
           aValue = new Date(a.createdAt).getTime();
@@ -277,12 +279,12 @@ export const getFeedbackById = async (req: Request, res: Response) => {
       });
     }
     
-    res.json({
+    return res.json({
       success: true,
       data: feedback
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to fetch feedback',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -297,7 +299,7 @@ export const createFeedback = async (req: Request, res: Response) => {
   try {
     const {
       title,
-      _description,
+      description,
       category,
       priority = 'medium',
       tags = [],
@@ -312,14 +314,14 @@ export const createFeedback = async (req: Request, res: Response) => {
     if (!title || !description || !category) {
       return res.status(400).json({
         success: false,
-        message: 'Title, _description, and category are required'
+        message: 'Title, description, and category are required'
       });
     }
     
     const newFeedback: FeedbackItem = {
       id: Date.now().toString(),
       title,
-      _description,
+      description,
       category,
       priority,
       status: 'submitted',
@@ -338,13 +340,13 @@ export const createFeedback = async (req: Request, res: Response) => {
     // In real implementation, save to database
     mockFeedback.push(newFeedback);
     
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: 'Feedback submitted successfully',
       data: newFeedback
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to create feedback',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -369,12 +371,20 @@ export const updateFeedbackStatus = async (req: Request, res: Response) => {
       });
     }
     
+    const feedbackToUpdate = mockFeedback[feedbackIndex];
+    if (!feedbackToUpdate) {
+      return res.status(404).json({
+        success: false,
+        message: 'Feedback not found'
+      });
+    }
+    
     // Update feedback
-    mockFeedback[feedbackIndex].status = status;
-    mockFeedback[feedbackIndex].updatedAt = new Date();
+    feedbackToUpdate.status = status;
+    feedbackToUpdate.updatedAt = new Date();
     
     if (assigneeId) {
-      mockFeedback[feedbackIndex].assignee = {
+      feedbackToUpdate.assignee = {
         id: assigneeId,
         name: 'Team Member' // In real implementation, get from user service
       };
@@ -384,7 +394,7 @@ export const updateFeedbackStatus = async (req: Request, res: Response) => {
     if (comment) {
       const response: FeedbackResponse = {
         id: Date.now().toString(),
-        feedbackId,
+        feedbackId: feedbackId || '',
         author: {
           id: req.user?.id || 'admin',
           name: req.user?.name || 'Admin',
@@ -395,16 +405,16 @@ export const updateFeedbackStatus = async (req: Request, res: Response) => {
         createdAt: new Date()
       };
       
-      mockFeedback[feedbackIndex].responses.push(response);
+      feedbackToUpdate.responses.push(response);
     }
     
-    res.json({
+    return res.json({
       success: true,
       message: 'Feedback status updated successfully',
-      data: mockFeedback[feedbackIndex]
+      data: feedbackToUpdate
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to update feedback status',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -438,6 +448,14 @@ export const voteFeedback = async (req: Request, res: Response) => {
       });
     }
     
+    const feedbackToUpdate = mockFeedback[feedbackIndex];
+    if (!feedbackToUpdate) {
+      return res.status(404).json({
+        success: false,
+        message: 'Feedback not found'
+      });
+    }
+    
     // Check if user already voted
     const existingVote = mockVotes.find(vote => 
       vote.feedbackId === feedbackId && vote.userId === userId
@@ -450,9 +468,9 @@ export const voteFeedback = async (req: Request, res: Response) => {
         mockVotes.splice(voteIndex, 1);
         
         if (type === 'upvote') {
-          mockFeedback[feedbackIndex].votes--;
+          feedbackToUpdate.votes--;
         } else {
-          mockFeedback[feedbackIndex].votes++;
+          feedbackToUpdate.votes++;
         }
       } else {
         // Change vote type
@@ -460,16 +478,16 @@ export const voteFeedback = async (req: Request, res: Response) => {
         existingVote.createdAt = new Date();
         
         if (type === 'upvote') {
-          mockFeedback[feedbackIndex].votes += 2; // Remove downvote, add upvote
+          feedbackToUpdate.votes += 2; // Remove downvote, add upvote
         } else {
-          mockFeedback[feedbackIndex].votes -= 2; // Remove upvote, add downvote
+          feedbackToUpdate.votes -= 2; // Remove upvote, add downvote
         }
       }
     } else {
       // Create new vote
       const newVote: FeedbackVote = {
         id: Date.now().toString(),
-        feedbackId,
+        feedbackId: feedbackId || '',
         userId,
         type,
         createdAt: new Date()
@@ -478,22 +496,22 @@ export const voteFeedback = async (req: Request, res: Response) => {
       mockVotes.push(newVote);
       
       if (type === 'upvote') {
-        mockFeedback[feedbackIndex].votes++;
+        feedbackToUpdate.votes++;
       } else {
-        mockFeedback[feedbackIndex].votes--;
+        feedbackToUpdate.votes--;
       }
     }
     
-    res.json({
+    return res.json({
       success: true,
       message: 'Vote recorded successfully',
       data: {
         feedbackId,
-        votes: mockFeedback[feedbackIndex].votes
+        votes: feedbackToUpdate.votes
       }
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to record vote',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -529,9 +547,17 @@ export const addFeedbackResponse = async (req: Request, res: Response) => {
       });
     }
     
+    const feedbackToUpdate = mockFeedback[feedbackIndex];
+    if (!feedbackToUpdate) {
+      return res.status(404).json({
+        success: false,
+        message: 'Feedback not found'
+      });
+    }
+    
     const response: FeedbackResponse = {
       id: Date.now().toString(),
-      feedbackId,
+      feedbackId: feedbackId || '',
       author: {
         id: userId || 'anonymous',
         name: userName,
@@ -542,16 +568,16 @@ export const addFeedbackResponse = async (req: Request, res: Response) => {
       createdAt: new Date()
     };
     
-    mockFeedback[feedbackIndex].responses.push(response);
-    mockFeedback[feedbackIndex].updatedAt = new Date();
+    feedbackToUpdate.responses.push(response);
+    feedbackToUpdate.updatedAt = new Date();
     
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: 'Response added successfully',
       data: response
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: 'Failed to add response',
       error: error instanceof Error ? error.message : 'Unknown error'
@@ -600,9 +626,9 @@ export const getTrendingFeedback = async (req: Request, res: Response) => {
 /**
  * Get feedback analytics
  */
-export const getFeedbackAnalytics = async (req: Request, res: Response) => {
+export const getFeedbackAnalytics = async (_req: Request, res: Response) => {
   try {
-    const { period = 'month' } = req.query;
+    // const { period = 'month' } = req.query; // Could be used for filtering by date range
     
     // Calculate analytics
     const total = mockFeedback.length;

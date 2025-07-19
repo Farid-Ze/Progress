@@ -1,8 +1,28 @@
 import { Request, Response } from 'express';
 
 // Types for Mentorship Program
-interface Mentor {
+/* 
+interface MentorshipGoal {
   id: string;
+  mentorshipRequestId: string;
+  title: string;
+  description: string;
+  priority: 'low' | 'medium' | 'high';
+  status: 'not-started' | 'in-progress' | 'completed' | 'cancelled';
+  targetDate: Date;
+  progress: number;
+  milestones: {
+    id: string;
+    title: string;
+    completed: boolean;
+    completedAt?: Date;
+  }[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+*/
+
+interface MentorProfile {
   userId: string;
   name: string;
   avatar: string;
@@ -250,26 +270,26 @@ const mockSessions: MentorshipSession[] = [
   }
 ];
 
-const _mockGoals: MentorshipGoal[] = [
-  {
-    id: '1',
-    mentorshipRequestId: '1',
-    title: 'Membuat Product Roadmap',
-    description: 'Menyusun roadmap produk untuk 6 bulan ke depan dengan prioritas yang jelas',
-    priority: 'high',
-    status: 'in-progress',
-    targetDate: new Date('2024-08-15'),
-    progress: 65,
-    milestones: [
-      { id: '1', title: 'Market research', completed: true, completedAt: new Date('2024-07-10') },
-      { id: '2', title: 'Feature prioritization', completed: true, completedAt: new Date('2024-07-15') },
-      { id: '3', title: 'Timeline planning', completed: false },
-      { id: '4', title: 'Resource allocation', completed: false }
-    ],
-    createdAt: new Date('2024-07-05'),
-    updatedAt: new Date('2024-07-18')
-  }
-];
+// const _mockGoals: MentorshipGoal[] = [
+//   {
+//     id: '1',
+//     mentorshipRequestId: '1',
+//     title: 'Membuat Product Roadmap',
+//     description: 'Menyusun roadmap produk untuk 6 bulan ke depan dengan prioritas yang jelas',
+//     priority: 'high',
+//     status: 'in-progress',
+//     targetDate: new Date('2024-08-15'),
+//     progress: 65,
+//     milestones: [
+//       { id: '1', title: 'Market research', completed: true, completedAt: new Date('2024-07-10') },
+//       { id: '2', title: 'Feature prioritization', completed: true, completedAt: new Date('2024-07-15') },
+//       { id: '3', title: 'Timeline planning', completed: false },
+//       { id: '4', title: 'Resource allocation', completed: false }
+//     ],
+//     createdAt: new Date('2024-07-05'),
+//     updatedAt: new Date('2024-07-18')
+//   }
+// ];
 
 const mockReviews: MentorReview[] = [
   {
@@ -718,7 +738,7 @@ export const scheduleMentorshipSession = async (req: Request, res: Response) => 
     const { requestId } = req.params;
     const {
       title,
-      _description,
+      // description,
       scheduledAt,
       duration = 60,
       type = 'video-call',
@@ -773,7 +793,7 @@ export const scheduleMentorshipSession = async (req: Request, res: Response) => 
       mentorId: request.mentorId,
       menteeId: request.menteeId,
       title,
-      description: description || '',
+      description: title || '', // Use title as fallback for description
       scheduledAt: new Date(scheduledAt),
       duration,
       type,
@@ -920,7 +940,7 @@ export const addSessionFeedback = async (req: Request, res: Response) => {
  */
 export const getMentorshipAnalytics = async (req: Request, res: Response) => {
   try {
-    const { period = 'month' } = req.query;
+    // const { period = 'month' } = req.query; // Could be used for analytics filtering
 
     // Calculate analytics
     const totalRequests = mockMentorshipRequests.length;

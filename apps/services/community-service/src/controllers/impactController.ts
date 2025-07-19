@@ -767,7 +767,7 @@ export const getImpactReports = async (req: Request, res: Response) => {
  */
 export const getDashboardOverview = async (req: Request, res: Response) => {
   try {
-    const { period = 'month' } = req.query;
+    // const { period = 'month' } = req.query; // Could be used for date range filtering
 
     // Calculate key metrics for dashboard
     const totalMetrics = mockImpactMetrics.filter(m => m.isActive).length;
