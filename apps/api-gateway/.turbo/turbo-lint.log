@@ -1,0 +1,4 @@
+
+> @merajut-asa/api-gateway@0.1.0 lint
+> eslint "src/**/*.ts"
+

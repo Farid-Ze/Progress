@@ -32,6 +32,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "husky": "^8.0.3",
     "turbo": "^1.13.4"
   },
   "main": "index.js",
