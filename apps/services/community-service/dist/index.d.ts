@@ -1,5 +1,3 @@
-declare const express: any;
-declare const cors: any;
-declare const app: any;
-declare const PORT: string | number;
+declare const app: import("express-serve-static-core").Express;
+export default app;
 //# sourceMappingURL=index.d.ts.map

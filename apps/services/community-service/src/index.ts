@@ -1,14 +1,67 @@
-// Community Service - Simple Express Server
-const express = require('express');
-const cors = require('cors');
+// Community Service - Express Server with Controllers
+import express, { Request, Response } from 'express';
+import cors from 'cors';
+
+// Import controllers
+import {
+  getAllCourses,
+  getCourseById,
+  enrollInCourse,
+  getUserEnrollments,
+  updateLessonProgress,
+  getCourseAnalytics,
+  getPopularCourses,
+  searchCourses
+} from './controllers/academyController';
+
+import {
+  getAllFeedback,
+  getFeedbackById,
+  createFeedback,
+  updateFeedbackStatus,
+  voteFeedback,
+  addFeedbackResponse,
+  getTrendingFeedback,
+  getFeedbackAnalytics
+} from './controllers/feedbackController';
+
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
-// Routes
-app.get('/api/v1/communities', (req: any, res: any) => {
+// Health check
+app.get('/health', (req: Request, res: Response) => {
+  res.json({ 
+    status: 'OK', 
+    service: 'community-service',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Academy routes
+app.get('/api/v1/academy/courses', getAllCourses);
+app.get('/api/v1/academy/courses/popular', getPopularCourses);
+app.get('/api/v1/academy/courses/search', searchCourses);
+app.get('/api/v1/academy/courses/:courseId', getCourseById);
+app.post('/api/v1/academy/courses/:courseId/enroll', enrollInCourse);
+app.get('/api/v1/academy/enrollments', getUserEnrollments);
+app.post('/api/v1/academy/courses/:courseId/modules/:moduleId/lessons/:lessonId/progress', updateLessonProgress);
+app.get('/api/v1/academy/analytics', getCourseAnalytics);
+
+// Feedback routes
+app.get('/api/v1/feedback', getAllFeedback);
+app.get('/api/v1/feedback/trending', getTrendingFeedback);
+app.get('/api/v1/feedback/analytics', getFeedbackAnalytics);
+app.get('/api/v1/feedback/:feedbackId', getFeedbackById);
+app.post('/api/v1/feedback', createFeedback);
+app.put('/api/v1/feedback/:feedbackId/status', updateFeedbackStatus);
+app.post('/api/v1/feedback/:feedbackId/vote', voteFeedback);
+app.post('/api/v1/feedback/:feedbackId/responses', addFeedbackResponse);
+
+// Legacy community routes
+app.get('/api/v1/communities', (req: Request, res: Response) => {
   res.json({
     success: true,
     data: [
@@ -23,14 +76,13 @@ app.get('/api/v1/communities', (req: any, res: any) => {
   });
 });
 
-app.get('/health', (req: any, res: any) => {
-  res.json({ status: 'OK', service: 'community-service' });
-});
-
 const PORT = process.env.PORT || 3004;
 
 app.listen(PORT, () => {
   console.log(`Community Service running on port ${PORT}`);
+  console.log(`Health check: http://localhost:${PORT}/health`);
+  console.log(`Academy API: http://localhost:${PORT}/api/v1/academy/courses`);
+  console.log(`Feedback API: http://localhost:${PORT}/api/v1/feedback`);
 });
 
-module.exports = app;
+export default app;

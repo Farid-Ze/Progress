@@ -1,0 +1,4 @@
+Community Service running on port 3004
+Health check: http://localhost:3004/health
+Academy API: http://localhost:3004/api/v1/academy/courses
+Feedback API: http://localhost:3004/api/v1/feedback

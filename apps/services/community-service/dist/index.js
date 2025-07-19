@@ -1,12 +1,45 @@
 "use strict";
-// Community Service - Simple Express Server
-const express = require('express');
-const cors = require('cors');
-const app = express();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+// Community Service - Express Server with Controllers
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+// Import controllers
+const academyController_1 = require("./controllers/academyController");
+const feedbackController_1 = require("./controllers/feedbackController");
+const app = (0, express_1.default)();
 // Middleware
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
-// Routes
+app.use((0, cors_1.default)());
+app.use(express_1.default.json({ limit: '10mb' }));
+// Health check
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'OK',
+        service: 'community-service',
+        timestamp: new Date().toISOString()
+    });
+});
+// Academy routes
+app.get('/api/v1/academy/courses', academyController_1.getAllCourses);
+app.get('/api/v1/academy/courses/popular', academyController_1.getPopularCourses);
+app.get('/api/v1/academy/courses/search', academyController_1.searchCourses);
+app.get('/api/v1/academy/courses/:courseId', academyController_1.getCourseById);
+app.post('/api/v1/academy/courses/:courseId/enroll', academyController_1.enrollInCourse);
+app.get('/api/v1/academy/enrollments', academyController_1.getUserEnrollments);
+app.post('/api/v1/academy/courses/:courseId/modules/:moduleId/lessons/:lessonId/progress', academyController_1.updateLessonProgress);
+app.get('/api/v1/academy/analytics', academyController_1.getCourseAnalytics);
+// Feedback routes
+app.get('/api/v1/feedback', feedbackController_1.getAllFeedback);
+app.get('/api/v1/feedback/trending', feedbackController_1.getTrendingFeedback);
+app.get('/api/v1/feedback/analytics', feedbackController_1.getFeedbackAnalytics);
+app.get('/api/v1/feedback/:feedbackId', feedbackController_1.getFeedbackById);
+app.post('/api/v1/feedback', feedbackController_1.createFeedback);
+app.put('/api/v1/feedback/:feedbackId/status', feedbackController_1.updateFeedbackStatus);
+app.post('/api/v1/feedback/:feedbackId/vote', feedbackController_1.voteFeedback);
+app.post('/api/v1/feedback/:feedbackId/responses', feedbackController_1.addFeedbackResponse);
+// Legacy community routes
 app.get('/api/v1/communities', (req, res) => {
     res.json({
         success: true,
@@ -21,12 +54,12 @@ app.get('/api/v1/communities', (req, res) => {
         ]
     });
 });
-app.get('/health', (req, res) => {
-    res.json({ status: 'OK', service: 'community-service' });
-});
 const PORT = process.env.PORT || 3004;
 app.listen(PORT, () => {
     console.log(`Community Service running on port ${PORT}`);
+    console.log(`Health check: http://localhost:${PORT}/health`);
+    console.log(`Academy API: http://localhost:${PORT}/api/v1/academy/courses`);
+    console.log(`Feedback API: http://localhost:${PORT}/api/v1/feedback`);
 });
-module.exports = app;
+exports.default = app;
 //# sourceMappingURL=index.js.map

@@ -14,7 +14,6 @@ import {
   IconButton,
   Input,
   Button,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 
@@ -29,7 +28,6 @@ const YoutubeIcon = () => <span aria-hidden="true">y</span>;
  */
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const isMobile = useBreakpointValue({ base: true, md: false });
   
   return (
     <Box 
@@ -55,6 +53,7 @@ export const Footer: React.FC = () => {
                 alt="Merajut ASA Logo" 
                 width={180} 
                 height={40} 
+                priority
               />
             </Box>
             
@@ -103,8 +102,11 @@ export const Footer: React.FC = () => {
               <Link href="/explore" color="whiteAlpha.800" _hover={{ color: 'white' }}>
                 Explore Campaigns
               </Link>
-              <Link href="/how-it-works" color="whiteAlpha.800" _hover={{ color: 'white' }}>
-                How It Works
+              <Link href="/katalisator" color="whiteAlpha.800" _hover={{ color: 'white' }}>
+                Katalisator Jabar
+              </Link>
+              <Link href="/akademi" color="whiteAlpha.800" _hover={{ color: 'white' }}>
+                Akademi Digital
               </Link>
               <Link href="/start-campaign" color="whiteAlpha.800" _hover={{ color: 'white' }}>
                 Start a Campaign
@@ -118,23 +120,23 @@ export const Footer: React.FC = () => {
           {/* Categories */}
           <GridItem>
             <Heading as="h3" size="sm" mb="4" color="white">
-              Categories
+              Program Strategis
             </Heading>
             <Stack spacing="2">
-              <Link href="/category/education" color="whiteAlpha.800" _hover={{ color: 'white' }}>
-                Education
+              <Link href="/katalisator" color="whiteAlpha.800" _hover={{ color: 'white' }}>
+                Katalisator Perubahan Jabar
               </Link>
-              <Link href="/category/medical" color="whiteAlpha.800" _hover={{ color: 'white' }}>
-                Medical
+              <Link href="/akademi" color="whiteAlpha.800" _hover={{ color: 'white' }}>
+                Akademi Penggerak Digital
               </Link>
-              <Link href="/category/community" color="whiteAlpha.800" _hover={{ color: 'white' }}>
-                Community
+              <Link href="/mentorship" color="whiteAlpha.800" _hover={{ color: 'white' }}>
+                Program Mentorship
               </Link>
-              <Link href="/category/environment" color="whiteAlpha.800" _hover={{ color: 'white' }}>
-                Environment
+              <Link href="/suara-komunitas" color="whiteAlpha.800" _hover={{ color: 'white' }}>
+                Suara Komunitas
               </Link>
-              <Link href="/category/creative" color="whiteAlpha.800" _hover={{ color: 'white' }}>
-                Creative
+              <Link href="/impact" color="whiteAlpha.800" _hover={{ color: 'white' }}>
+                Impact Measurement
               </Link>
             </Stack>
           </GridItem>
